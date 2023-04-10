@@ -1,5 +1,8 @@
 require('dotenv').config();
 const dbPassword = process.env.DB_PASSWORD;
+const dbHost = process.env.DB_HOST;
+const dbUser = process.env.DB_USER;
+const dbName = process.env.DB_NAME;
 
 const express = require('express');
 const mysql = require('mysql2');
@@ -9,10 +12,10 @@ const app = express();
 app.use(cors());
 
 const connection = mysql.createConnection({
-  host: '127.0.0.1',
-  user: 'root',
+  host: dbHost,
+  user: dbUser,
   password: dbPassword,
-  database: 'zoo',
+  database: dbName,
   port: 3306
 });
 

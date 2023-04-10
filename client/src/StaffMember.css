@@ -11,14 +11,13 @@
   }
   
   .staff-member h2 {
-    font-size: 24px;
-    margin: 0;
+    font-size: 20px;
+    margin-bottom: 5px;
   }
   
   .staff-member p {
-    font-size: 18px;
+    font-size: 15px;
     margin: 0;
     white-space: pre-wrap;
-    margin-top: 10px;
   }
   

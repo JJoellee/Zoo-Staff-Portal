@@ -28,7 +28,7 @@ function AnimalCard({ animal }) {
         <div className={`card-inner ${isFlipped ? 'card-flip' : ''}`}>
             <div className="card-front">
                 <img src={getRandomImage()} alt="Animal" className="card-img-top" />
-                <h5 className="card-title">Name: {animal.name}</h5>
+                <h5 className="card-title">{animal.name}</h5>
             </div>
             <div className="card-back">
                 <p className="card-text">Specie: {animal.specie}</p>
