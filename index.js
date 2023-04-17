@@ -22,6 +22,42 @@ const connection = mysql.createConnection({
 });
 
 // API routes here
+
+//Login
+
+app.post('/api/login', (req, res) => {
+  const { email, ssn } = req.body;
+
+  if (!email || !ssn) {
+    return res.status(400).send('Email and SSN are required');
+  }
+
+  const query = 'SELECT * FROM staff_member WHERE email = ? AND ssn = ?';
+  connection.query(query, [email, ssn], async (err, results) => {
+    if (err) {
+      res.status(500).send('Error querying the database');
+    } else if (results.length > 0) {
+      const user = results[0];
+
+      // Check if the user is a receptionist
+      const receptionistQuery = 'SELECT * FROM receptionist WHERE sssn = ?';
+      connection.query(receptionistQuery, [ssn], (err, receptionistResults) => {
+        if (err) {
+          res.status(401).send('Invalid email or SSN');
+        } else {
+          const isReceptionist = receptionistResults.length > 0;
+          res.status(200).json({ message: 'User validated', isReceptionist });
+        }
+      });
+    } else {
+      res.status(401).send('Invalid email or SSN');
+    }
+  });
+});
+
+
+
+//Animals
 app.get('/api/animals', (req, res) => {
     connection.query('SELECT * FROM animal', (err, results) => {
       if (err) {
@@ -32,6 +68,7 @@ app.get('/api/animals', (req, res) => {
     });
   });
 
+  //Staff
   app.get('/api/staff', (req, res) => {
     const type = req.query.type;
   

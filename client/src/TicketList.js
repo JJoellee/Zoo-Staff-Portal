@@ -4,7 +4,6 @@ import './TicketList.css';
 const TicketList = ({ tickets, loggedInReceptionist, onDeleteTicket }) => {
     return (
       <div>
-        <h2>Tickets</h2>
         <table>
           <thead>
             <tr>

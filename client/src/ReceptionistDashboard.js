@@ -9,7 +9,7 @@ const ReceptionistDashboard = ({ receptionist, onIssueTicket}) => {
   useEffect(() => {
     const fetchTickets = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/receptionist/${receptionist.ssn}/tickets`);
+        const response = await fetch(`http://localhost:5000/api/receptionist/${receptionist}/tickets`);
         const data = await response.json();
         setTickets(data);
       } catch (err) {
@@ -18,7 +18,7 @@ const ReceptionistDashboard = ({ receptionist, onIssueTicket}) => {
     };
   
     fetchTickets();
-  }, [receptionist.ssn]);
+  }, [receptionist]);
   
   const handleSubmit = (ticketData) => {
     onIssueTicket(ticketData);
@@ -34,9 +34,6 @@ const ReceptionistDashboard = ({ receptionist, onIssueTicket}) => {
   return (
     <div>
       <h1>Receptionist Dashboard</h1>
-      <p>
-        Logged in as {receptionist.first_name} {receptionist.last_name}
-      </p>
       <h2>Issued Tickets</h2>
       <TicketList tickets={tickets} onDeleteTicket={handleDelete}/>
       <NewTicketForm onSubmit={handleSubmit}/>

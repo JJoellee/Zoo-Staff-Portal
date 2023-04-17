@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './Navbar.css';
 
-const Navbar = () => {
+const Navbar = ({ isReceptionist }) => {
   return (
     <nav className="navbar">
       <ul className="nav-links">
@@ -26,11 +26,11 @@ const Navbar = () => {
             Events
           </NavLink>
         </li>
-        <li>
+        {isReceptionist && (<li>
           <NavLink to="/tickets" activeClassName="active">
             Tickets
           </NavLink>
-        </li>
+        </li>)}
         <li>
           <NavLink to="/feedback" activeClassName="active">
             Feedback
