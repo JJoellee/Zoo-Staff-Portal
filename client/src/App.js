@@ -10,7 +10,7 @@ import Animals from './Animals';
 import StaffMembers from './StaffMembers';
 import Events from './Events';
 import Tickets from './Tickets';
-
+import Feedback from './Feedback';
 
 function App() {
 
@@ -24,6 +24,7 @@ function App() {
             <Route path="/staff-members" element={<StaffMembers />} />
             <Route path="/events" element={<Events />} />
             <Route path="/tickets" element={<Tickets />} />
+            <Route path="/feedback" element={<Feedback />} />
           </Routes>
         </div>
       </Router>

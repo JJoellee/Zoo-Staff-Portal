@@ -1,0 +1,37 @@
+.events {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .event {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    max-width: 600px;
+    width: 100%;
+  }
+  
+  .event h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .event p {
+    font-size: 16px;
+    margin: 5px 0;
+  }
+  
+  .event p.event-manager {
+    font-style: italic;
+  }
+  
+  .event p.passed {
+    color: red;
+  }
+
+  button.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }

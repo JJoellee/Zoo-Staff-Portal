@@ -9,7 +9,7 @@ const TicketList = ({ tickets, loggedInReceptionist, onDeleteTicket }) => {
           <thead>
             <tr>
               <th>Ticket ID</th>
-              <th>Price</th>
+              <th>Price ($)</th>
               <th>Type</th>
               <th>Date of Issuing</th>
               <th>Receptionist Name</th>

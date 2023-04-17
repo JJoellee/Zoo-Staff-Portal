@@ -38,7 +38,7 @@ form {
   }
   
   button[type="submit"] {
-    background-color: #4CAF50;
+    background-color: #000000;
     border: none;
     color: white;
     padding: 12px 20px;
@@ -52,7 +52,7 @@ form {
   }
   
   button[type="submit"]:hover {
-    background-color: #3e8e41;
+    background-color: #d6d6d6;
   }
   
   input:invalid {

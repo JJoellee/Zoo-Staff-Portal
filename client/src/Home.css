@@ -1,16 +1,46 @@
-h1 {
-    font-size: 3rem;
-    text-align: center;
-    margin-top: 2rem;
-  }
-  
-  img {
-    display: block;
-    margin: 0 auto;
-    width: 80%;
-    max-width: 600px;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-  }
-  
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  font-size: 15px;
+}
+
+.zooMap{
+  font-size: 5px;
+}
+
+.description,
+.mission,
+.map,
+.zooMap {
+  text-align: center;
+  margin: 10px 150px 30px 150px;
+  border-bottom: 2px solid #333;
+  padding: 20px;
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 0.5s;
+}
+
+.slide-from-left {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+img {
+  display: block;
+  margin: 30px auto;
+  width: 80%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.home > ul {
+  margin-left: 20px;
+  color: #333;
+  list-style-position: inside;
+}

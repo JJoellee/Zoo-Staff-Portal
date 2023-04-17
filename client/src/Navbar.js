@@ -31,6 +31,11 @@ const Navbar = () => {
             Tickets
           </NavLink>
         </li>
+        <li>
+          <NavLink to="/feedback" activeClassName="active">
+            Feedback
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );

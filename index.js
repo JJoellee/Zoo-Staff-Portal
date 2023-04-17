@@ -70,18 +70,23 @@ app.get('/api/animals', (req, res) => {
 app.get('/api/tickets', (req, res) => {
   const query = `
     SELECT 
-      t.*, 
+      t.tid,
+      t.price,
+      t.type,
+      DATE_FORMAT(t.date_of_issuing, \'%Y-%m-%d\') AS date_of_issuing,
       g.sssn AS guide_ssn, gsm.first_name AS guide_first_name, gsm.last_name AS guide_last_name,
       r.sssn AS receptionist_ssn, rsm.first_name AS receptionist_first_name, rsm.last_name AS receptionist_last_name
     FROM ticket AS t
     JOIN guide AS g ON t.guide_ssn = g.sssn
     JOIN staff_member AS gsm ON g.sssn = gsm.ssn
     JOIN receptionist AS r ON t.recep_ssn = r.sssn
-    JOIN staff_member AS rsm ON r.sssn = rsm.ssn;
+    JOIN staff_member AS rsm ON r.sssn = rsm.ssn
+    ORDER BY date_of_issuing ASC;
   `;
 
   connection.query(query, (err, results) => {
     if (err) {
+      console.log(err);
       res.status(500).send('Error retrieving data from the database');
     } else {
       res.json(results);
@@ -164,6 +169,30 @@ app.delete('/api/tickets/:tid', (req, res) => {
   });
 });
 
+//Get events
+app.get('/api/events', (req, res) => {
+  connection.query('SELECT e.name, DATE_FORMAT(e.date, \'%Y-%m-%d\') AS date, e.location, CONCAT(sm.first_name, " ", sm.last_name) AS event_manager_name FROM event e JOIN staff_member sm ON e.event_manager_ssn = sm.ssn ORDER BY date DESC'
+  , (err, results) => {
+    if (err) {
+      res.status(500).send('Error retrieving data from the database');
+    } else {
+      const events = results.map(event => {
+        const currentDate = new Date();
+        const eventDate = new Date(event.date);
+        const hasPassed = eventDate < currentDate;
+        return {
+          name: event.name,
+          date: event.date,
+          location: event.location,
+          event_manager: event.event_manager_name,
+          has_passed: hasPassed,
+          can_attend: !hasPassed // assuming anyone can attend any event
+        }
+      });
+      res.json(events);
+    }
+  });
+});
 
 
 const PORT = process.env.PORT || 5000;
